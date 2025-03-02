@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int factorial(int n) {
+    int result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+int binomCof(int n, int k) {
+    return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+
+void binom(int n, int a, int b) {
+    printf("(%d + %d)^%d = ", a, b, n);
+    
+    for (int k = 0; k <= n; k++) {
+        int cof = binomCof(n, k);
+        int a_cof = n - k;
+        int b_cof = k;
+        
+        printf("%d * %d^%d * %d^%d", cof, a, a_cof, b, b_cof);
+        
+        if (k < n) {
+            printf(" + ");
+        }
+    }
+    
+    printf("\n");
+}
+
+int main() {
+    int n, a, b;
+    printf("Enter n , a and b: ");
+    scanf("%d %d %d", &n, &a, &b);
+
+    binom(n, a, b);
+
+    return 0;
+}
